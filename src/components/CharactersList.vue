@@ -33,7 +33,7 @@ export default {
 
         return{
           page: 1,
-          search: "morty",
+          search: _state.search,
           status: _state.filterIsEnabled ? _state.filter : undefined
         }
       }

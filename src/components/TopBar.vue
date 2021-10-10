@@ -8,9 +8,9 @@
       <b-button>Return</b-button>
     </router-link>
     <div v-if="!$route.params.id" class="inputs">
-      <b-button variant="secondary" v-if="!filterIsEnabled" v-on:click="toggleFilters()" >Enable filters</b-button>
-      <b-button variant="secondary" v-if="filterIsEnabled" v-on:click="toggleFilters()" >Disable filters</b-button>
-      <b-dropdown text="filters" :disabled="!filterIsEnabled" >
+      <b-button size="sm" variant="secondary" v-if="!filterIsEnabled" v-on:click="toggleFilters()" >Enable filters</b-button>
+      <b-button size="sm" variant="secondary" v-if="filterIsEnabled" v-on:click="toggleFilters()" >Disable filters</b-button>
+      <b-dropdown size="sm" text="filters" :disabled="!filterIsEnabled" >
         <b-dropdown-item-button v-on:click="switchFilter({filter:'Alive'})" :active="filter === 'Alive'" >
           Alive
         </b-dropdown-item-button >
@@ -21,12 +21,13 @@
           Shrödinger
         </b-dropdown-item-button >
       </b-dropdown>
+      <b-form-input placeholder="search" size="sm" v-on:change="setSearch($event)" />
     </div>
   </b-navbar>
 </template>
 
 <script>
-  import { mapActions, mapMutations, mapState } from 'vuex'
+  import { mapMutations, mapState } from 'vuex'
 
   export default {
     name: 'TopBar',
@@ -35,9 +36,11 @@
       filterIsEnabled: 'filterIsEnabled'
     }),
     methods: {
+      setSearch(event){
+        this.$store.commit('setSearch',{search: event})
+      },
       ...mapMutations([
         'toggleFilters',
-        'setSearch',
         'switchFilter'
       ])
     },
