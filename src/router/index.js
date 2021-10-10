@@ -10,6 +10,11 @@ const routes = [
     component: () => import('../views/Characters.vue')
   },
   {
+    path: '/characters/:id',
+    name: 'CharacterDetails',
+    component: () => import('../views/CharacterDetails.vue') 
+  },
+  {
     path: '*',
     redirect: '/characters'
   }

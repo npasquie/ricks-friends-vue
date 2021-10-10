@@ -61,4 +61,8 @@ export default {
     margin-top: 0.4rem;
     margin-right: 0.4rem;
   }
+
+  div{
+    display: inline-block;
+  }
 </style>

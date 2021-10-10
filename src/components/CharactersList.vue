@@ -1,7 +1,9 @@
 <template>
   <div>
-   {{page}}
-    <character-card :id=1 />
+    {{numberOfPages}}
+    <div v-if="!$apollo.loading">
+        <character-card :id=parseInt(result.id) v-for="result in characters.results" :key=parseInt(result.id) />
+    </div>
   </div>
 </template>
 
@@ -12,15 +14,27 @@ import CharacterCard from './CharacterCard.vue'
 export default {
   name: 'CharactersList',
   props:{
-      page: Number,
       numberOfPages: Number
   },
   data(){
-    return{
-    }
+    return{}
   },
   apollo:{
-      
+    characters: {
+      query: gql`
+        query CharacterIds($page: Int, $search: String, $status: String){
+          characters(page: $page, filter:{name: $search, status: $status}) {
+            results{
+              id
+            }
+          }
+        }`,
+      variables : {
+        page: 1,
+        search: "morty",
+        status: "Alive"
+      }
+    }
   },
   components: {CharacterCard}
 }
