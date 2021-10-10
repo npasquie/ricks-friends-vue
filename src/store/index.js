@@ -10,26 +10,17 @@ export default new Vuex.Store({
     filterIsEnabled: false
   },
   mutations: {
-    switchFilter(filter){
-      state.filter = filter
+    switchFilter(state,payload){
+      let filter = payload.filter
+
+      if (filter === "Alive" || filter === "Dead" || filter === "unknown")
+        state.filter = filter
     },
-    setSearch(search){
-      state.search = search
+    setSearch(state,payload){
+      state.search = payload.search
     },
-    toggleFilters(){
+    toggleFilters(state){
       state.filterIsEnabled = !state.filterIsEnabled
     }
-  },
-  actions: {
-    switchFilter(filter){
-      if (filter === "Alive" || filter === "Dead" || filter === "unknown")
-        context.commit('switchFilter',filter)
-    },
-    setSearch(search){
-      context.commit('setSearch',search)
-    },
-    toggleFilters(){
-      context.commit('toggleFilters')
-    }
-  } // modules not needed for this project
+  } // no action or module are needed for this project
 })

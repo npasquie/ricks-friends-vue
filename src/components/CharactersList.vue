@@ -28,10 +28,14 @@ export default {
             }
           }
         }`,
-      variables : {
-        page: 1,
-        search: "morty",
-        status: "Alive"
+      variables() { 
+        let _state = this.$store.state
+
+        return{
+          page: 1,
+          search: "morty",
+          status: _state.filterIsEnabled ? _state.filter : undefined
+        }
       }
     }
   },

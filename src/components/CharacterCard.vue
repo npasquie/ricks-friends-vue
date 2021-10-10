@@ -1,8 +1,8 @@
 <template>
   <router-link :to=link >
     <div v-if="$apollo.loading">
-      <b-card class="characterCard" img-top>
-        <b-skeleton-img card-img="top"/>
+      <b-card class="characterCard" >
+        <b-spinner/>
       </b-card>
     </div>
     <div v-else>
