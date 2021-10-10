@@ -1,8 +1,7 @@
 <template>
   <div>
-    {{numberOfPages}}
     <div v-if="!$apollo.loading">
-        <character-card :id=parseInt(result.id) v-for="result in characters.results" :key=parseInt(result.id) />
+      <character-card :id=parseInt(result.id) v-for="result in characters.results" :key=parseInt(result.id) />
     </div>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <router-link :to=link >
     <div v-if="$apollo.loading">
       <b-card class="characterCard" img-top>
         <b-skeleton-img card-img="top"/>
@@ -15,7 +15,7 @@
         </b-card-text>
       </b-card>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -28,9 +28,7 @@ export default {
   },
   data(){
     return{
-      character: {
-        name: ''
-      }
+      link: `/characters/${this.id}`
     }
   },
   apollo:{
@@ -64,5 +62,9 @@ export default {
 
   div{
     display: inline-block;
+  }
+
+  a{
+    color: black;
   }
 </style>

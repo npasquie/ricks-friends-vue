@@ -9,8 +9,8 @@
         <p>{{character.species}} {{character.gender !== "unknown" ? character.gender : "of unknown gender"}}</p>
         <p>Life Status : {{character.status}}</p>
         <p>From {{character.origin.name}}</p>
-        <p v-if="character.origin.location != undefined">
-          Last seen in {{character.origin.location}}</p>
+        <p v-if="character.location.name">
+          Last seen in {{character.location.name}}</p>
         <p>Featured in :</p>
         <ul>
           <li v-for="episode in character.episode" :key=episode.name >
