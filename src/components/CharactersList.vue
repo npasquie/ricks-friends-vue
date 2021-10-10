@@ -13,7 +13,7 @@ import CharacterCard from './CharacterCard.vue'
 export default {
   name: 'CharactersList',
   props:{
-      numberOfPages: Number
+      page: Number
   },
   data(){
     return{}
@@ -32,7 +32,7 @@ export default {
         let _state = this.$store.state
 
         return{
-          page: 1,
+          page: this.page,
           search: _state.search,
           status: _state.filterIsEnabled ? _state.filter : undefined
         }
