@@ -1,11 +1,11 @@
 <template>
-  <router-link :to=link >
+  <router-link :to=link class="link" >
     <div v-if="$apollo.loading">
       <b-card class="characterCard" >
         <b-spinner/>
       </b-card>
     </div>
-    <div v-else style="padding: 0">
+    <div v-else >
       <b-card class="characterCard"
         :title=character.name
         :img-src=character.image
@@ -65,7 +65,7 @@ export default {
     display: inline-block;
   }
 
-  a{
+  .link{
     color: black;
   }
 </style>
