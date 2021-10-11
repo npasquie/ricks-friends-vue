@@ -63,6 +63,7 @@ export default {
 
   div{
     display: inline-block;
+    vertical-align: top;
   }
 
   .link{
