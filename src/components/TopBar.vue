@@ -11,8 +11,8 @@
       <div v-if="!$route.params.id" class="inputs">
         <b-row>
           <b-col>
-            <b-button size="sm" variant="secondary" v-if="!filterIsEnabled" v-on:click="toggleFilters()" >Enable filters</b-button>
-            <b-button size="sm" variant="secondary" v-if="filterIsEnabled" v-on:click="toggleFilters()" >Disable filters</b-button>
+            <b-button size="sm" variant="secondary" v-if="!filterIsEnabled" v-on:click="toggleFilters()" >Enable filter</b-button>
+            <b-button size="sm" variant="secondary" v-if="filterIsEnabled" v-on:click="toggleFilters()" >Disable filter</b-button>
             <b-dropdown size="sm" text="filters" :disabled="!filterIsEnabled" >
               <b-dropdown-item-button v-on:click="switchFilter({filter:'Alive'})" :active="filter === 'Alive'" >
                 Alive
