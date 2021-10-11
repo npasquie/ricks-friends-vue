@@ -4,25 +4,33 @@
       <img src="../assets/ricks-head.png" width="30" height="30" class="ricksHead"/>
       Rick's Friends
     </b-navbar-brand>
-    <router-link to="/characters" v-if="$route.params.id">
-      <b-button>Return</b-button>
-    </router-link>
-    <div v-if="!$route.params.id" class="inputs">
-      <b-button size="sm" variant="secondary" v-if="!filterIsEnabled" v-on:click="toggleFilters()" >Enable filters</b-button>
-      <b-button size="sm" variant="secondary" v-if="filterIsEnabled" v-on:click="toggleFilters()" >Disable filters</b-button>
-      <b-dropdown size="sm" text="filters" :disabled="!filterIsEnabled" >
-        <b-dropdown-item-button v-on:click="switchFilter({filter:'Alive'})" :active="filter === 'Alive'" >
-          Alive
-        </b-dropdown-item-button >
-        <b-dropdown-item-button  v-on:click="switchFilter({filter:'Dead'})" :active="filter === 'Dead'" >
-          Dead
-        </b-dropdown-item-button >
-        <b-dropdown-item-button  v-on:click="switchFilter({filter:'unknown'})" :active="filter === 'unknown'" >
-          Shrödinger
-        </b-dropdown-item-button >
-      </b-dropdown>
-      <b-form-input placeholder="search" size="sm" v-on:change="setSearch($event)" />
-    </div>
+    <b-container>
+      <router-link to="/characters" v-if="$route.params.id">
+        <b-button>Return</b-button>
+      </router-link>
+      <div v-if="!$route.params.id" class="inputs">
+        <b-row>
+          <b-col>
+            <b-button size="sm" variant="secondary" v-if="!filterIsEnabled" v-on:click="toggleFilters()" >Enable filters</b-button>
+            <b-button size="sm" variant="secondary" v-if="filterIsEnabled" v-on:click="toggleFilters()" >Disable filters</b-button>
+            <b-dropdown size="sm" text="filters" :disabled="!filterIsEnabled" >
+              <b-dropdown-item-button v-on:click="switchFilter({filter:'Alive'})" :active="filter === 'Alive'" >
+                Alive
+              </b-dropdown-item-button >
+              <b-dropdown-item-button  v-on:click="switchFilter({filter:'Dead'})" :active="filter === 'Dead'" >
+                Dead
+              </b-dropdown-item-button >
+              <b-dropdown-item-button  v-on:click="switchFilter({filter:'unknown'})" :active="filter === 'unknown'" >
+                Shrödinger
+              </b-dropdown-item-button >
+            </b-dropdown>
+          </b-col>
+          <b-col>
+            <b-form-input placeholder="search" size="sm" v-on:change="setSearch($event)" />
+          </b-col>
+        </b-row>
+      </div>
+    </b-container>
   </b-navbar>
 </template>
 
