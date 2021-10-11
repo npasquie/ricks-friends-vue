@@ -2,11 +2,21 @@
   <div class="characters">
     <top-bar/>
     <b-container>
-      <b-spinner v-if="$apollo.loading"/>
-      <div v-if="!$apollo.loading" >
-        <b-pagination v-model="page" :total-rows="characters.info.pages * 20" :per-page="20" class="pagination" />
-        <characters-list :page="Math.min(page,characters.info.pages)" />
-        <b-pagination v-model="page" :total-rows="characters.info.pages * 20" :per-page="20" class="pagination" />
+      <div v-if="error" class="pagination">
+        <b-col>
+        <p>No Result.</p>
+        <b-button v-on:click="clearSearch()">
+          Clear my search
+        </b-button>
+        </b-col>
+      </div>
+      <div v-if="!error">
+        <b-spinner v-if="$apollo.loading"/>
+        <div v-if="!$apollo.loading" >
+          <b-pagination v-model="page" :total-rows="characters.info.pages" :per-page="1" class="pagination" />
+          <characters-list :page="Math.min(page,characters.info.pages)" />
+          <b-pagination v-model="page" :total-rows="characters.info.pages" :per-page="1" class="pagination" />
+        </div>
       </div>
     </b-container>
   </div>
@@ -21,27 +31,34 @@ export default {
   name: 'Characters',
   data(){
     return {
-      page: 1
+      page: 1,
+      error: undefined
+    }
+  },
+  methods:{
+    clearSearch(){
+        this.$store.commit('setSearch',{search: ''}),
+        this.error = undefined
     }
   },
   apollo:{
     characters: {
-      query: gql`query Characters($search: String, $status: String){
+      query: gql`query Characters($search: String!, $status: String!){
         characters(filter:{name: $search, status: $status}){
           info {
             pages
           }
         }
-      }`
-    }
-  },
-  variables(){
-    let _state = this.$store.state
-    console.log(_state);
-    
-    return {
-      search: _state.search,
-      status: _state.filterIsEnabled ? _state.filter : undefined
+      }`,
+      variables(){    
+        return {
+          search: this.$store.state.search,
+          status: this.$store.state.filterIsEnabled ? this.$store.state.filter : ''
+        }
+      },
+      error(err){
+        this.error = err
+      }
     }
   },
   components: {

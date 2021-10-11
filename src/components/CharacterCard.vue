@@ -5,7 +5,7 @@
         <b-spinner/>
       </b-card>
     </div>
-    <div v-else>
+    <div v-else style="padding: 0">
       <b-card class="characterCard"
         :title=character.name
         :img-src=character.image
@@ -58,6 +58,7 @@ export default {
     width: 15rem;
     margin-top: 0.4rem;
     margin-right: 0.4rem;
+    height: 100%;
   }
 
   div{
